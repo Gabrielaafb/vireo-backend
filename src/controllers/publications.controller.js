@@ -1,4 +1,4 @@
-import Publication from "../../src/models/publication.model";
+import Publication from "../models/publication.model.js";
 
 
 export const getPublications = async (req, res) => {
