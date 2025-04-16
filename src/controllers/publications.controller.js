@@ -1,4 +1,4 @@
-import Publication from "../../src/models/publication.model.js"; 
+import Publication from "../../src/models/publication.model";
 
 
 export const getPublications = async (req, res) => {
@@ -10,6 +10,7 @@ export const getPublications = async (req, res) => {
     res.status(500).json({ message: "Error al cargar publicaciones" });
   }
 };
+
 
 export const createPublication = async (req, res) => {
   try {
@@ -35,4 +36,3 @@ export const createPublication = async (req, res) => {
     res.status(500).json({ message: "Error interno al crear publicación" });
   }
 };
-
