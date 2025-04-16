@@ -25,6 +25,10 @@ app.get("/api", (req, res) => {
 app.use("/api/publications", publicationRoutes);
 app.use("/api/users", userRoutes);
 
+app.get("/", (req, res) => {
+  res.send("🌿 Backend Vireo corriendo correctamente 🚀");
+});
+
 // Iniciar servidor (Render lo detectará automáticamente)
 const startServer = async () => {
   try {
