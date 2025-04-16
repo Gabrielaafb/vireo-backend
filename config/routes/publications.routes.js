@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getPublications, createPublication } from "../../src/controllers/publications.controller.js";
-import { upload } from "../cloudinary/cloudinary"; 
+import { upload } from "../cloudinary/cloudinary.js"; 
 const router = Router();
 
 router.get("/", getPublications);
