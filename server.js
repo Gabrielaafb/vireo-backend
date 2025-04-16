@@ -11,29 +11,33 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middlewares
-app.use(cors());
+// ✅ Configuración de CORS para permitir conexión con Netlify
+const corsOptions = {
+  origin: "*", // Puedes usar: "https://marketvireo.netlify.app"
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
 
-// Ruta de prueba para verificar que está funcionando
-app.get("/api", (req, res) => {
-  res.send("API funcionando correctamente ✅");
-});
-
-// Rutas principales
-app.use("/api/publications", publicationRoutes);
-app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("🌿 Backend Vireo corriendo correctamente 🚀");
 });
 
-// Iniciar servidor (Render lo detectará automáticamente)
+
+app.use("/api/publications", publicationRoutes);
+app.use("/api/users", userRoutes);
+
+
 const startServer = async () => {
   try {
     await sequelize.authenticate();
     console.log("Conectado a la base de datos PostgreSQL ✔");
+
+    await sequelize.sync({ alter: true });
 
     app.listen(PORT, () => {
       console.log(`Servidor corriendo en http://localhost:${PORT}`);
@@ -44,3 +48,4 @@ const startServer = async () => {
 };
 
 startServer();
+
