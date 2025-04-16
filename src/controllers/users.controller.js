@@ -36,7 +36,7 @@ export const registerUser = async (req, res) => {
   try {
     const { name, email, password, image } = req.body;
 
-    console.log("📥 Registrando usuario:", req.body);
+    console.log("📥 Datos recibidos en registro:", req.body);
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Faltan datos" });
@@ -58,7 +58,7 @@ export const registerUser = async (req, res) => {
 
     res.status(201).json({ message: "Usuario registrado con éxito", user: newUser });
   } catch (error) {
-    console.error("🛑 Error al registrar usuario:", error);
+    console.error("🛑 Error al registrar usuario:", error); // ✅ Log extendido
     res.status(500).json({ message: "Error al registrar usuario", error: error.message });
   }
 };
