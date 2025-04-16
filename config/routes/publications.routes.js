@@ -1,9 +1,19 @@
 import { Router } from "express";
-import { getPublications, createPublication } from "../../src/controllers/publications.controller.js";
-import { upload } from "../cloudinary/cloudinary.js"; 
+import {
+  getPublications,
+  createPublication,
+  getPublicationById
+} from "../../src/controllers/publications.controller.js";
+import { upload } from "../cloudinary/cloudinary.js";
+
 const router = Router();
 
+
 router.get("/", getPublications);
-router.post("/", upload.single("image"), createPublication); 
+
+
+router.get("/:id", getPublicationById);
+
+router.post("/", upload.single("image"), createPublication);
 
 export default router;

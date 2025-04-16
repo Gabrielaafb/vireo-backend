@@ -11,6 +11,22 @@ export const getPublications = async (req, res) => {
   }
 };
 
+export const getPublicationById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const publicacion = await Publication.findByPk(id);
+
+    if (!publicacion) {
+      return res.status(404).json({ message: "Publicación no encontrada" });
+    }
+
+    res.status(200).json(publicacion);
+  } catch (error) {
+    console.error("🛑 Error al obtener publicación:", error);
+    res.status(500).json({ message: "Error al obtener publicación", error: error.message });
+  }
+};
+
 
 export const createPublication = async (req, res) => {
   try {

@@ -2,7 +2,6 @@ import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-// Obtener todos los usuarios
 export const getAllUsers = async (req, res) => {
   try {
     const users = await User.findAll();
@@ -13,7 +12,7 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-// Obtener usuario por ID
+
 export const getUserById = async (req, res) => {
   const { id } = req.params;
 
@@ -31,7 +30,7 @@ export const getUserById = async (req, res) => {
   }
 };
 
-// Registrar usuario
+
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password, image } = req.body;
@@ -58,12 +57,11 @@ export const registerUser = async (req, res) => {
 
     res.status(201).json({ message: "Usuario registrado con éxito", user: newUser });
   } catch (error) {
-    console.error("🛑 Error al registrar usuario:", error); // ✅ Log extendido
+    console.error("🛑 Error al registrar usuario:", error); 
     res.status(500).json({ message: "Error al registrar usuario", error: error.message });
   }
 };
 
-// Login usuario
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
