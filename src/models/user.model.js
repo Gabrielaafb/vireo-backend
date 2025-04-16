@@ -11,9 +11,16 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     unique: true,
   },
-  password: DataTypes.STRING,
-  name: DataTypes.STRING,
-  image: DataTypes.STRING,
+  password: {
+    type: DataTypes.STRING,
+  },
+  name: {
+    type: DataTypes.STRING,
+  },
+  image: {
+    type: DataTypes.STRING,
+    allowNull: true, 
+  },
 }, {
   tableName: "users",
   timestamps: true,

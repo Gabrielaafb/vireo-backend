@@ -13,7 +13,7 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-
+// Obtener usuario por ID
 export const getUserById = async (req, res) => {
   const { id } = req.params;
 
@@ -31,10 +31,12 @@ export const getUserById = async (req, res) => {
   }
 };
 
-
+// Registrar usuario
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password, image } = req.body;
+
+    console.log("📥 Registrando usuario:", req.body);
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Faltan datos" });
@@ -51,16 +53,17 @@ export const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      image,
+      image: image || "https://res.cloudinary.com/de1firogd/image/upload/v1713200000/placeholder-user.jpg",
     });
 
     res.status(201).json({ message: "Usuario registrado con éxito", user: newUser });
   } catch (error) {
+    console.error("🛑 Error al registrar usuario:", error);
     res.status(500).json({ message: "Error al registrar usuario", error: error.message });
   }
 };
 
-
+// Login usuario
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -90,7 +93,7 @@ export const loginUser = async (req, res) => {
       },
     });
   } catch (error) {
+    console.error("🛑 Error al iniciar sesión:", error);
     res.status(500).json({ message: "Error al iniciar sesión", error: error.message });
   }
 };
-
