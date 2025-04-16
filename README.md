@@ -3,7 +3,7 @@
 Este es el backend de **Vireo**, un marketplace de productos naturales, desarrollado con Node.js, Express y PostgreSQL.
 
 ### Despliegue
-- **Render:** https://vireo-backend-nuevo.onrender.com/api
+- **Render:** https://vireo-backend-nuevo.onrender.com/
 
 ### Tecnologías
 - Node.js
